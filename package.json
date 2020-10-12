@@ -1,0 +1,26 @@
+{
+  "name": "hatech-web-component-editor",
+  "version": "0.0.1",
+  "description": "同创前端组件模板，用于配合CLI程序快速创建组件模板",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://git.hatech.com.cn:8088/hatech-web/hatech-web-component-editor.git"
+  },
+  "keywords": [
+    "editor"
+  ],
+  "author": {
+    "name": "qiangang",
+    "email": "qiangang@hatech.com.cn"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@tinymce/tinymce-vue": "^3.2.3",
+    "qg-web-component2": "0.0.3",
+    "tinymce": "^5.3.2"
+  }
+}
