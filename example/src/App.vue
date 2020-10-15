@@ -4,36 +4,59 @@
                                  ref="editor"
                                  v-model="content"
                                  :config="config"
-                                 pattern="decoupledEditor"/>
-    <button @click="destoryEditor">销毁编辑器</button>
-    <button @click="disabledEditor">禁用编辑器</button>
-    <button @click="unDisabledEditor">启用编辑器</button>
-    <button @click="showEditor">显示编辑器</button>
-    <button @click="hideEditor">隐藏编辑器</button>
-    <button @click="reloadEditor">重新加载编辑器</button>
+                                 pattern="decoupledEditor">
+      <!-- 弹框与编辑器交互示例 Begin -->
+      <test-dialog :visible="visible"/>
+      <!-- 弹框与编辑器交互示例 End -->
+    </hatech-web-component-editor>
+    <!-- 功能示例 Begin -->
+    <el-button @click="destoryEditor">销毁编辑器</el-button>
+    <el-button @click="disabledEditor">禁用编辑器</el-button>
+    <el-button @click="unDisabledEditor">启用编辑器</el-button>
+    <el-button @click="showEditor">显示编辑器</el-button>
+    <el-button @click="hideEditor">隐藏编辑器</el-button>
+    <el-button @click="reloadEditor">重新加载编辑器</el-button>
+    <!-- 功能示例 End -->
   </div>
 </template>
 
 <script>
   import HatechWebComponentEditor from '../../packages/component/src/main'
+  import TestDialog from './components/testDialog'
+
+  // 编辑器配置
+  import BaseConfig from './config'
+
+  // 引用注册插件示例
+  import registerTestPlugin from './editorExtend/registerTestPlugin'
 
   export default {
     name: 'App',
     components: {
-      HatechWebComponentEditor
+      HatechWebComponentEditor,
+      TestDialog
     },
     data() {
       return {
         content: '',
-        config: {
-          handleSave: this.handleSave
-        }
+        config: {},
+        visible: false
       }
     },
     watch: {
       'content': function (newVal) {
-        console.log(newVal)
+        console.log(newVal);
       }
+    },
+    created() {
+      // 自定义插件需要放入plugins
+      BaseConfig.plugins = `${BaseConfig.plugins} testPlugin`;
+      // 自定义插件按钮需要放入toolbar才能在toolbar上展示
+      BaseConfig.toolbar = `testPlugin | ${BaseConfig.toolbar}`;
+      this.config = BaseConfig;
+    },
+    mounted() {
+      this.registerTestPlugin();
     },
     methods: {
       /**
@@ -41,25 +64,51 @@
        * @param data
        */
       handleSave(data) {
-        console.log(data)
+        console.log(data);
       },
+      /**
+       * 销毁编辑器
+       */
       destoryEditor() {
-        this.$refs.editor.destory()
+        this.$refs.editor.destory();
       },
+      /**
+       * 启用编辑器
+       */
       unDisabledEditor() {
-        this.$refs.editor.handleEditorDisabled(false)
+        this.$refs.editor.handleEditorDisabled(false);
       },
+      /**
+       * 禁用编辑器
+       */
       disabledEditor() {
-        this.$refs.editor.handleEditorDisabled(true)
+        this.$refs.editor.handleEditorDisabled(true);
       },
+      /**
+       * 显示编辑器
+       */
       showEditor() {
-        this.$refs.editor.handleEditorVisible(true)
+        this.$refs.editor.handleEditorVisible(true);
       },
+      /**
+       * 隐藏编辑器
+       */
       hideEditor() {
-        this.$refs.editor.handleEditorVisible(false)
+        this.$refs.editor.handleEditorVisible(false);
       },
+      /**
+       * 重新加载编辑器
+       */
       reloadEditor() {
-        this.$refs.editor.reload()
+        this.$refs.editor.reload();
+      },
+      /**
+       * =================================
+       * 扩展插件示例
+       * =================================
+       */
+      registerTestPlugin() {
+        registerTestPlugin(this, this.$refs.editor.editorManager);
       }
     }
   }

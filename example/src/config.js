@@ -36,6 +36,7 @@ export default {
   images_upload_url: '',
   // 图片上传自定义实现
   images_upload_handler: (blobInfo, success, failure) => {
+    console.log(failure);
     const img = 'data:image/jpeg;base64,' + blobInfo.base64();
     success(img);
   },
@@ -52,8 +53,8 @@ export default {
   // 取消是否直接销毁编辑器（若不是直接销毁编辑器则是隐藏编辑器）
   destroyAfterCancle: false,
   // 保存事件 -- 接收文本内容
-  handleSave: data => {},
+  handleSave: data => {console.log(data)},
   // 注册编辑器自定义事件 注册后可通过execCommand调用
-  addCommand: addCommand => {}
+  addCommand: addCommand => {console.log(addCommand)}
 }
 
