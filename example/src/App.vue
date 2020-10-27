@@ -6,7 +6,9 @@
                                  :config="config"
                                  pattern="decoupledEditor">
       <!-- 弹框与编辑器交互示例 Begin -->
-      <test-dialog :visible="visible"/>
+      <test-dialog :visible="visible"
+        @handleDialogClose="handleDialogClose"
+      />
       <!-- 弹框与编辑器交互示例 End -->
     </hatech-web-component-editor>
     <!-- 功能示例 Begin -->
@@ -21,7 +23,7 @@
 </template>
 
 <script>
-  import HatechWebComponentEditor from '../../packages/component/src/main'
+  import { HatechWebComponentEditor } from 'qg-web-component-editor2'
   import TestDialog from './components/testDialog'
 
   // 编辑器配置
@@ -109,6 +111,12 @@
        */
       registerTestPlugin() {
         registerTestPlugin(this, this.$refs.editor.editorManager);
+      },
+      /**
+       * 弹窗关闭时对编辑器进行插入值操作
+       */
+      handleDialogClose() {
+        this.$refs.editor.editorManager.execCommand('handleDialogClose');
       }
     }
   }

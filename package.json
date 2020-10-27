@@ -1,7 +1,7 @@
 {
-  "name": "hatech-web-component-editor",
-  "version": "0.0.1",
-  "description": "同创前端组件模板，用于配合CLI程序快速创建组件模板",
+  "name": "qg-web-component-editor2",
+  "version": "0.0.3",
+  "description": "同创前端富文本编辑器组件",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

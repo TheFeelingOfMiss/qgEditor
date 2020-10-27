@@ -1,8 +1,8 @@
 
-import Component from '../packages/component'
+import HatechWebComponentEditor from '../packages/component'
 
 const components = [
-  Component
+  HatechWebComponentEditor
 ]
 
 const install = function (Vue) {
@@ -13,9 +13,16 @@ const install = function (Vue) {
   })
 }
 
-// 提供版本号，install方法
+// 版本号，与package.json中的版本保持一致
+const version = '0.0.1'
+
 export default {
-  version: '0.0.1',
+  version,
   install,
-  Component
+  HatechWebComponentEditor
+}
+export {
+  version,
+  install,
+  HatechWebComponentEditor
 }

@@ -45,8 +45,25 @@ export default function registerTestPlugin(_self, editorManager) {
     });
 
     // 注册编辑器响应事件
+
+    /**
+     * 工具栏图标点击响应事件
+     */
     editor.editorCommands.addCommand('handleTestPluginClick', () => {
-      _self.visible = true
+      _self.visible = true;
+    });
+
+    /**
+     * 测试弹框关闭响应事件
+     */
+    editor.editorCommands.addCommand('handleDialogClose', () => {
+      // 创建一个节点
+      const ele = editor.dom.create('p', {
+        style: 'color: rgb(186, 55, 42)'
+      }, '测试文本');
+      // 将新建的节点追加到编辑器中
+      editor.selection.setNode(ele);
+      _self.visible = false;
     });
 
   });
