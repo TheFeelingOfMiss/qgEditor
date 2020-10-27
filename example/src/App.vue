@@ -23,7 +23,7 @@
 </template>
 
 <script>
-  import { HatechWebComponentEditor } from 'qg-web-component-editor2'
+  import HatechWebComponentEditor from '../../packages/component/src/main'
   import TestDialog from './components/testDialog'
 
   // 编辑器配置

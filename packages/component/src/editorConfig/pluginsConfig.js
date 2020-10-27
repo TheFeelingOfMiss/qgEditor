@@ -30,6 +30,8 @@ const defaultPlugins =  [
   'emoticons',
   'autosave',
   'autoresize',
+  "noneditable",
+  "contextmenu"
 ];
 
 const extendPlugins = [
